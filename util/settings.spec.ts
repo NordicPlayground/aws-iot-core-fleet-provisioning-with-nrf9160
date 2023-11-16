@@ -1,29 +1,31 @@
 import type { SSMClient } from '@aws-sdk/client-ssm'
 import { Scope, settingsPath, getSettings } from './settings.js'
+import assert from 'node:assert/strict'
+import { describe, test as it } from 'node:test'
 
-describe('settingsPath()', () => {
-	it('should produce a fully qualified parameter name', () =>
-		expect(
+void describe('settingsPath()', () => {
+	void it('should produce a fully qualified parameter name', () =>
+		assert.equal(
 			settingsPath({
 				scope: Scope.LAMBDA_CLAIM_CERTIFICATE,
 				stackName: 'fleet',
 				property: 'someProperty',
 			}),
-		).toEqual('/fleet/lambdaClaim/someProperty'))
+			'/fleet/lambdaClaim/someProperty',
+		))
 
-	it('should error for invalid string scope', () => {
-		expect(() =>
+	void it('should error for invalid string scope', () =>
+		assert.throws(() =>
 			settingsPath({
 				scope: 'invalidScope',
 				stackName: 'fleet',
 				property: 'someProperty',
 			}),
-		).toThrowError()
-	})
+		))
 })
 
-describe('getSettings()', () => {
-	it('should return the object with same scope', async () => {
+void describe('getSettings()', () =>
+	void it('should return the object with same scope', async () => {
 		const returnedValues = [
 			{
 				Name: `/fleet/lambdaClaim/key1`,
@@ -41,17 +43,16 @@ describe('getSettings()', () => {
 
 		const stackConfig = getSettings({
 			ssm: {
-				send: jest.fn().mockResolvedValue({ Parameters: returnedValues }),
+				send: async () => Promise.resolve({ Parameters: returnedValues }),
 			} as unknown as SSMClient,
 			stackName: 'fleet',
 			scope: Scope.LAMBDA_CLAIM_CERTIFICATE,
 		})
 
 		const result = await stackConfig()
-		expect(result).toEqual({
+		assert.deepEqual(result, {
 			key1: 'value1',
 			key2: 'value2',
 			key3: 'value3',
 		})
-	})
-})
+	}))
