@@ -4,7 +4,7 @@
   "version": "0.0.0-development",
   "type": "module",
   "scripts": {
-    "test": "npx globstar -- npx tsx --test --test-reporter spec \"!(dist|node_modules)/**/*.spec.ts\"",
+    "test": "npx globstar -- npx tsx --no-warnings --test --test-reporter spec \"!(dist|node_modules)/**/*.spec.ts\"",
     "prepare": "husky install && check-node-version --package",
     "deploy": "cdk deploy",
     "synth": "cdk synth"
