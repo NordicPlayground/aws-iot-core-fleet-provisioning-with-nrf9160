@@ -32,7 +32,7 @@
     "@aws-sdk/client-iot": "3.386.0",
     "@aws-sdk/client-ssm": "3.386.0",
     "@aws-sdk/client-sts": "3.386.0",
-    "@nordicsemiconductor/asset-tracker-cloud-code-style": "12.0.69",
+    "@bifravst/prettier-config": "1.0.0",
     "@nordicsemiconductor/eslint-config-asset-tracker-cloud-typescript": "16.0.12",
     "@swc/cli": "0.1.62",
     "@swc/core": "1.3.75",
