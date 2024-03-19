@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { program } from 'commander'
 import psjon from '../package.json'
-import type { CommandDefinition } from './commands/CommandDefinition'
+import type { CommandDefinition } from './commands/CommandDefinition.js'
 import { STSClient } from '@aws-sdk/client-sts'
 import { generateClaimCertificate } from './commands/generate-claim-certificate.js'
 import { IoTClient } from '@aws-sdk/client-iot'
