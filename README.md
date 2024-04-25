@@ -107,13 +107,10 @@ in line with these requirements would resemble the following:
 
 ## Step 1: Provide AWS Credentials
 
-Provide your AWS credentials, for example, using the `.envrc` file (see
-[the example](.envrc.example)).
+[Provide your AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-authentication.html).
 
 **Note**
 
-- If opting for `.envrc`, ensure prior installation of the
-  [direnv](https://direnv.net/) tool.
 - Ensure that the AWS credentials you provide possess adequate permissions for
   CDK execution. For the sake of the demonstration, it's advisable to grant
   administrative privileges.
